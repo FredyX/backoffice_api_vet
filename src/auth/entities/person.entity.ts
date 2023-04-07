@@ -1,10 +1,10 @@
 import {
-        Entity,
-        Column, 
-        PrimaryGeneratedColumn,
-        ManyToOne,
-        OneToMany
-     } from 'typeorm';
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { Incharge } from './incharge.entity';
 import { Seller } from './sellers.entity';
 
@@ -34,13 +34,12 @@ export class Person {
   @Column()
   rol: string;
 
-  @ManyToOne(() => Person, person => person.id_person)
+  @ManyToOne(() => Person, (person) => person.id_person)
   id_creator: number;
 
-  @OneToMany(() => Incharge, incharge => incharge.person)
+  @OneToMany(() => Incharge, (incharge) => incharge.person)
   incharges: Incharge[];
 
-  @OneToMany( () => Seller, seller => seller.id_person)
-  seller : Seller;
-  
+  @OneToMany(() => Seller, (seller) => seller.id_person)
+  seller: Seller;
 }

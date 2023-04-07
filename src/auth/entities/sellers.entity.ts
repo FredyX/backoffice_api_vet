@@ -6,7 +6,7 @@ export class Seller {
   @PrimaryGeneratedColumn()
   id_seller: number;
 
-  @ManyToOne(() => Person, person => person.id_person)
+  @ManyToOne(() => Person, (person) => person.id_person)
   id_person: number;
 
   @Column()
