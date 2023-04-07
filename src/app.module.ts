@@ -11,7 +11,7 @@ import { PetModule } from './pet/pet.module';
       type: 'mssql',
       host: process.env.HOST,
       port: +process.env.PORT,
-      username: process.env.USERNAME,
+      username: process.env.DBUSERNAME,
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
       synchronize: true,
