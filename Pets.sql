@@ -1,4 +1,4 @@
-CREATE SCHEMA pet;
+--CREATE SCHEMA pet;
 -- Se crea la tabla persona contiene todos los atributos comunes entre ellos los roles
 -- Solo el rol admin podra crear personas
 CREATE TABLE pet.persons (
@@ -48,6 +48,14 @@ CREATE TABLE pet.pets(
     age INT NOT NULL,
     FOREIGN KEY (id_person) REFERENCES pet.persons(id_person) ON DELETE CASCADE
 );
+
+CREATE TABLE pet.type_pet(
+	id_type_pet INT PRIMARY KEY NOT NULL,
+	name_type VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE pet.pets
+ADD FOREIGN KEY (id_type_pet) REFERENCES pet.type_pet(id_type_pet)
 
 CREATE TABLE pet.apointment(
     id_apointment INT IDENTITY(1,1) PRIMARY KEY,
