@@ -3,26 +3,29 @@ CREATE SCHEMA pet;
 -- Solo el rol admin podra crear personas
 CREATE TABLE pet.persons (
   id_person INT IDENTITY(1,1) PRIMARY KEY,
-  name VARCHAR(50),
-  last_name VARCHAR(50),
+  dni VARCHAR(13),
+  name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
   phone VARCHAR(20),
   direction VARCHAR(100),
-  email VARCHAR(100),
+  email VARCHAR(100) NOT NULL,
   password VARCHAR(100),
   rol VARCHAR(20),
+  gender VARCHAR(20),
+  nationality VARCHAR(25),
   id_creator INT,
   FOREIGN KEY (id_creator)
     REFERENCES pet.persons(id_person)
 );
 
 CREATE TABLE pet.incharges (
-    id_inchage INT PRIMARY KEY,
+    id_inchage INT IDENTITY(1,1) PRIMARY KEY,
     id_person INT UNIQUE FOREIGN KEY REFERENCES pet.persons(id_person),
     id_type_service INT FOREIGN KEY REFERENCES pet.type_services(id_service)
 );
 
 CREATE TABLE pet.sellers (
-    id_seller INT PRIMARY KEY,
+    id_seller INT IDENTITY(1,1) PRIMARY KEY,
     id_person INT FOREIGN KEY REFERENCES pet.persons(id_person),
     rol VARCHAR(50),
     total_sold INT
@@ -46,7 +49,8 @@ CREATE TABLE pet.pets(
     id_person INT NOT NULL,
     name VARCHAR(50) NOT NULL,
     age INT NOT NULL,
-    FOREIGN KEY (id_person) REFERENCES pet.persons(id_person) ON DELETE CASCADE
+    FOREIGN KEY (id_person) REFERENCES pet.persons(id_person) ON DELETE CASCADE,
+    FOREIGN KEY (id_type_pet) REFERENCES pet.type_pet(id_type_pet) ON DELETE CASCADE,
 );
 
 CREATE TABLE pet.apointment(
@@ -117,3 +121,15 @@ CREATE TABLE pet.prescription_product(
     CONSTRAINT fk_product FOREIGN KEY (id_product) REFERENCES pet.products( id_product),
     CONSTRAINT fk_prescription FOREIGN KEY (id_prescription) REFERENCES pet.prescriptions(id_prescription)
 );
+
+CREATE pet.type_pet(
+    id_type_pet INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(30)
+);
+
+CREATE pet.type_breed(
+    id_type_breed INT IDENTITY(1,1) PRIMARY KEY,
+    type_pet INT NOT NULL,
+    name VARCHAR(30),
+    CONSTRAINT fk_type_pet FOREIGN KEY (type_pet) REFERENCES pet.type_pet(id_type_pet)
+):
