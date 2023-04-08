@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServiceModule } from './service/service.module';
 import { PetModule } from './pet/pet.module';
+import { TypePetModule } from './type_pet/type_pet.module';
+import { TypeBreedModule } from './type_breed/type_breed.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -19,6 +21,8 @@ import { PetModule } from './pet/pet.module';
     AuthModule,
     ServiceModule,
     PetModule,
+    TypePetModule,
+    TypeBreedModule,
   ],
   controllers: [],
   providers: [],
