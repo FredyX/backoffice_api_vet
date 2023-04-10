@@ -9,5 +9,6 @@ import { Incharge } from 'src/auth/entities/incharge.entity';
   imports: [TypeOrmModule.forFeature([TypeService, Incharge])],
   controllers: [TypeServiceController],
   providers: [TypeServices],
+  exports: [TypeServices],
 })
 export class TypeServiceModule {}

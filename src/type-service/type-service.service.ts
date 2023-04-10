@@ -3,7 +3,8 @@ import { CreateTypeServiceDto } from './dto/create-type-service.dto';
 import { UpdateTypeServiceDto } from './dto/update-type-service.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeService } from './entities/type-service.entity';
-import { Repository } from 'typeorm';
+import { DeepPartial, In, Repository } from 'typeorm';
+import { type } from 'os';
 
 @Injectable()
 export class TypeServices {
@@ -27,8 +28,17 @@ export class TypeServices {
     return await this.repositoryType.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} typeService`;
+  async findOne(term: number) {
+    const type_service = await this.repositoryType.findOneBy({
+      id_service: term,
+    });
+    return type_service;
+  }
+  async findByIds(ids: number[]) {
+    const type_services = await this.repositoryType.find({
+      where: { id_service: In(ids) },
+    });
+    return type_services;
   }
 
   update(id: number, updateTypeServiceDto: UpdateTypeServiceDto) {

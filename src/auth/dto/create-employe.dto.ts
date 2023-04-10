@@ -42,4 +42,8 @@ export class CreateEmployeeDto {
 
   @IsString()
   dni: string;
+
+  @IsString()
+  @IsOptional()
+  id_service?: string;
 }
