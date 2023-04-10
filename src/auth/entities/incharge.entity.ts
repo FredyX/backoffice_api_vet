@@ -6,10 +6,10 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { TypeService } from '../../service/entities/type_service.entity';
+import { TypeService } from '../../type-service/entities/type-service.entity';
 import { Person } from './person.entity';
 
-@Entity()
+@Entity({ name: 'incharges', schema: 'pet' })
 export class Incharge {
   @PrimaryGeneratedColumn()
   id_inchage: number;
@@ -18,9 +18,9 @@ export class Incharge {
   @JoinColumn({ name: 'id_person' })
   person: Person;
 
-  @ManyToMany(() => TypeService)
+  @ManyToMany(() => TypeService, (typeService) => typeService.incharges)
   @JoinTable({
-    name: 'pet.type_services_incharges',
+    name: 'type_services_incharges',
     joinColumn: {
       name: 'id_incharge',
       referencedColumnName: 'id_inchage',

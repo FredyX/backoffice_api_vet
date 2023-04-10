@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ServiceModule } from './service/service.module';
 import { PetModule } from './pet/pet.module';
+import { TypeServiceModule } from './type-service/type-service.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -14,11 +14,12 @@ import { PetModule } from './pet/pet.module';
       username: process.env.DBUSERNAME,
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
+      autoLoadEntities: true,
       synchronize: true,
     }),
     AuthModule,
-    ServiceModule,
     PetModule,
+    TypeServiceModule,
   ],
   controllers: [],
   providers: [],

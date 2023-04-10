@@ -38,5 +38,8 @@ export class CreateEmployeeDto {
   gender: string;
 
   @IsString()
-  country: string;
+  nationality: string;
+
+  @IsString()
+  dni: string;
 }

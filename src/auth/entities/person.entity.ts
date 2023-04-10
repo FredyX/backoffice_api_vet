@@ -8,33 +8,42 @@ import {
 import { Incharge } from './incharge.entity';
 import { Seller } from './sellers.entity';
 
-@Entity()
+@Entity({ name: 'persons', schema: 'pet' })
 export class Person {
   @PrimaryGeneratedColumn()
   id_person: number;
 
-  @Column()
+  @Column('varchar')
+  dni: string;
+  
+  @Column('varchar')
   name: string;
 
-  @Column()
+  @Column('varchar')
   last_name: string;
 
-  @Column()
+  @Column('varchar')
   phone: string;
 
-  @Column()
+  @Column('varchar')
   direction: string;
 
-  @Column()
+  @Column('varchar')
   email: string;
 
-  @Column()
+  @Column('varchar')
   password: string;
 
-  @Column()
+  @Column('varchar')
   rol: string;
 
-  @ManyToOne(() => Person, (person) => person.id_person)
+  @Column('varchar')
+  nationality: string;
+
+  @Column('varchar')
+  gender: string;
+
+  @ManyToOne(() => Person, (person) => person.id_creator)
   id_creator: number;
 
   @OneToMany(() => Incharge, (incharge) => incharge.person)

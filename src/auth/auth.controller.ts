@@ -10,14 +10,16 @@ import {
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
+import { CreateEmployeeDto } from './dto/create-employe.dto';
 
-@Controller('auth')
+@Controller('employee')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
-  create(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.create(createAuthDto);
+  async create(@Body() createAuthDto: CreateEmployeeDto) {
+    //console.log(createAuthDto);
+    return await this.authService.create(createAuthDto);
   }
 
   @Get()
