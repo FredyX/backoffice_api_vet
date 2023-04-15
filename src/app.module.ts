@@ -6,6 +6,7 @@ import { PetModule } from './pet/pet.module';
 import { TypeServiceModule } from './type-service/type-service.module';
 import { TypePetModule } from './type_pet/type_pet.module';
 import { TypeBreedModule } from './type_breed/type_breed.module';
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -24,6 +25,7 @@ import { TypeBreedModule } from './type_breed/type_breed.module';
     TypeServiceModule,
     TypePetModule,
     TypeBreedModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],
